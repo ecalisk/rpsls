@@ -1,3 +1,4 @@
+/* func: Randomly generate a computer choice */
 function getComputerChoice() {
   let seed = Math.random();
 
@@ -15,16 +16,19 @@ function getComputerChoice() {
   }
 }
 
+/* func: Get player choice & correct its format */
 function getPlayerChoice() {
   let playerChoice = prompt("What is your play?");
 
-  /* Manipulate to correct format: first letter capital only */
+  // Manipulate to correct format: first letter capital only
   playerChoice =
     playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
   return playerChoice;
 }
 
+/* func: Compare choices & evaluate winner */
 function evaluateWinner(computerChoice, playerChoice) {
+  // func: Standardize winner announcement
   let announceWinner = (
     winningChoice,
     losingChoice,
@@ -44,27 +48,27 @@ function evaluateWinner(computerChoice, playerChoice) {
     case computerChoice == "Scissors" && playerChoice == "Paper":
       return announceWinner(computerChoice, playerChoice, "cuts", "lost");
     case playerChoice == "Scissors" && computerChoice == "Paper":
-      return announceWinner(playerChoice, computerChoice), "cuts", "won";
+      return announceWinner(playerChoice, computerChoice, "cuts", "won");
     // Paper covers Rock
     case computerChoice == "Paper" && playerChoice == "Rock":
       return announceWinner(computerChoice, playerChoice, "covers", "lost");
     case playerChoice == "Paper" && computerChoice == "Rock":
-      return announceWinner(playerChoice, computerChoice), "covers", "won";
+      return announceWinner(playerChoice, computerChoice, "covers", "won");
     // Rock crushes Lizard
     case computerChoice == "Rock" && playerChoice == "Lizard":
       return announceWinner(computerChoice, playerChoice, "crushes", "lost");
     case playerChoice == "Rock" && computerChoice == "Lizard":
-      return announceWinner(playerChoice, computerChoice), "crushes", "won";
+      return announceWinner(playerChoice, computerChoice, "crushes", "won");
     // Lizard poisons Spock
     case computerChoice == "Lizard" && playerChoice == "Spock":
       return announceWinner(computerChoice, playerChoice, "poisons", "lost");
     case playerChoice == "Lizard" && computerChoice == "Spock":
-      return announceWinner(playerChoice, computerChoice), "poisons", "won";
+      return announceWinner(playerChoice, computerChoice, "poisons", "won");
     // Spock smashes Scissors
     case computerChoice == "Spock" && playerChoice == "Scissors":
       return announceWinner(computerChoice, playerChoice, "smashes", "lost");
     case playerChoice == "Spock" && computerChoice == "Scissors":
-      return announceWinner(playerChoice, computerChoice), "smashes", "won";
+      return announceWinner(playerChoice, computerChoice, "smashes", "won");
     // Scissors decapitates Lizard
     case computerChoice == "Scissors" && playerChoice == "Lizard":
       return announceWinner(
@@ -74,26 +78,31 @@ function evaluateWinner(computerChoice, playerChoice) {
         "lost"
       );
     case playerChoice == "Scissors" && computerChoice == "Lizard":
-      return announceWinner(playerChoice, computerChoice), "decapitates", "won";
+      return announceWinner(playerChoice, computerChoice, "decapitates", "won");
     // Lizard eats Paper
     case computerChoice == "Lizard" && playerChoice == "Paper":
       return announceWinner(computerChoice, playerChoice, "eats", "lost");
     case playerChoice == "Lizard" && computerChoice == "Paper":
-      return announceWinner(playerChoice, computerChoice), "eats", "won";
+      return announceWinner(playerChoice, computerChoice, "eats", "won");
     // Paper disproves Spock
     case computerChoice == "Paper" && playerChoice == "Spock":
       return announceWinner(computerChoice, playerChoice, "disproves", "lost");
     case playerChoice == "Paper" && computerChoice == "Spock":
-      return announceWinner(playerChoice, computerChoice), "disproves", "won";
+      return announceWinner(playerChoice, computerChoice, "disproves", "won");
     // Spock vaporizes Rock
     case computerChoice == "Spock" && playerChoice == "Rock":
       return announceWinner(computerChoice, playerChoice, "vaporizes", "lost");
     case playerChoice == "Spock" && computerChoice == "Rock":
-      return announceWinner(playerChoice, computerChoice), "vaporizes", "won";
+      return announceWinner(playerChoice, computerChoice, "vaporizes", "won");
     // (and as it always has) Rock crushes Scissors
     case computerChoice == "Rock" && playerChoice == "Scissors":
       return announceWinner(computerChoice, playerChoice, "crushes", "lost");
     case playerChoice == "Rock" && computerChoice == "Scissors":
-      return announceWinner(playerChoice, computerChoice), "crushes", "won";
+      return announceWinner(playerChoice, computerChoice, "crushes", "won");
   }
+}
+
+/* MAIN GAME LOOP */
+while (true) {
+  alert(evaluateWinner(getComputerChoice(), getPlayerChoice()));
 }
