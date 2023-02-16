@@ -102,7 +102,13 @@ function evaluateWinner(computerChoice, playerChoice) {
   }
 }
 
+/* RETRIEVE NICKNAME & CHANNEL NAME*/
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const nickname = urlParams.get("nickname");
+const channel = urlParams.get("channel");
+
+console.log(nickname);
+console.log(channel);
+
 /* MAIN GAME LOOP */
-while (true) {
-  alert(evaluateWinner(getComputerChoice(), getPlayerChoice()));
-}
