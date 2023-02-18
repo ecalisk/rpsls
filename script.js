@@ -34,8 +34,16 @@ function evaluateWinner(computerChoice, playerChoice) {
     defeatAction,
     winnerName
   ) => {
-    if (winnerName == "tie") return `bastelfreak: It's a ${winnerName}!`;
-    return `bastelfreak: ${winnerName} won! ${winningChoice} ${defeatAction} ${losingChoice}!`;
+    //func: if tie -announce tie, or else update userWinCount or opponentWinCunt based on the determined winner,
+    if (winnerName == "tie") {
+      return `bastelfreak: It's a tie!`;
+    } else if (winnerName == "JackFrost") {
+      opponentWinCount++;
+    } else {
+      userWinCount++;
+    }
+
+    return `bastelfreak: ${winningChoice} ${defeatAction} ${losingChoice}! ${winnerName} won!`;
   };
 
   /* GAME RULES */
@@ -184,9 +192,18 @@ function evaluateWinner(computerChoice, playerChoice) {
         `${nickname}`
       );
     default:
-      return `bastelfreak: Your move is off ${nickname} !`;
+      return `bastelfreak: Your move is off ${nickname}!`;
   }
 }
+
+/* Read chat input, event handle send button, initiate counters  */
+const chatInputBox = document.querySelector("#chat-input");
+const chatInputElement = chatInputBox.querySelector("input");
+const btnSend = document.querySelector("#btn-send");
+let validRoundCount = 0;
+let userWinCount = 0;
+let opponentWinCount = 0;
+btnSend.addEventListener("click", sendMessage);
 
 /* RETRIEVE NICKNAME & CHANNEL NAME*/
 const queryString = window.location.search;
@@ -204,24 +221,29 @@ for (let i = 0; i < listItems.length; i++) {
   }
 }
 
+/* MAIN */
 function sendMessage() {
+  //Get opponent & user choices, evaluate choices
   const userMessage = document.createElement("li");
   userMessage.textContent = getPlayerChoice();
-
   const opponentMessage = document.createElement("li");
   opponentMessage.textContent = getComputerChoice();
-
   const evaluation = evaluateWinner(
     opponentMessage.textContent,
     userMessage.textContent
   );
 
+  // Append choices to previous messages
   userMessage.textContent = `${nickname}: ` + userMessage.textContent;
   opponentMessage.textContent = "JackFrost: " + opponentMessage.textContent;
   previousMessages.appendChild(opponentMessage);
   previousMessages.appendChild(userMessage);
-  console.log(evaluation);
 
+  // Create referee feedback
+  const refereeEvaluation = document.createElement("li");
+  previousMessages.appendChild(refereeEvaluation);
+
+  // If it's not a tie or off move -count the round
   if (
     evaluation != `bastelfreak: Your move is off ${nickname}!` &&
     evaluation != `bastelfreak: It's a tie!`
@@ -229,19 +251,15 @@ function sendMessage() {
     validRoundCount++;
   }
 
+  // Give referee feedback - What happened? Who won the round? Should the referee initiate another round or congratulate the winner?
   if (validRoundCount >= 3) {
-    btnSend.disabled = true;
-    console.log("bastelfreak: We have a winner!");
+    btnSend.disabled = true; // three valid rounds -> disable send button
+    let gameWinner = userWinCount > opponentWinCount ? nickname : "JackFrost";
+    refereeEvaluation.textContent = `${evaluation} We have a game winner! Congrats ${gameWinner}!`;
   } else {
-    console.log("bastelfreak: Another round.. Ready go!");
+    refereeEvaluation.textContent = `${evaluation} Another round.. Ready go!`;
   }
 
+  // Empty chat input box before next use
   chatInputElement.value = "";
 }
-
-/* MAIN GAME LOOP */
-const chatInputBox = document.querySelector("#chat-input");
-const chatInputElement = chatInputBox.querySelector("input");
-const btnSend = document.querySelector("#btn-send");
-btnSend.addEventListener("click", sendMessage);
-let validRoundCount = 0;
