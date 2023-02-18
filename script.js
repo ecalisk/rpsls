@@ -108,7 +108,14 @@ const urlParams = new URLSearchParams(queryString);
 const nickname = urlParams.get("nickname");
 const channel = urlParams.get("channel");
 
-console.log(nickname);
-console.log(channel);
+/* UPDATE PREVIOUS MESSAGES WITH NICKNAME*/
+const previousMessages = document.getElementById("previous-messages");
+const listItems = previousMessages.getElementsByTagName("li");
+for (let i = 0; i < listItems.length; i++) {
+  let listItem = listItems[i];
+  if (listItem.textContent.includes("USER")) {
+    listItem.textContent = listItem.textContent.replace(/USER/g, nickname);
+  }
+}
 
 /* MAIN GAME LOOP */

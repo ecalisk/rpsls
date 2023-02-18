@@ -1,0 +1,13 @@
+JackFrost|Hey, do you use spaces or tabs for indentation in your code?
+USER|Spaces, obviously. Tabs are evil.
+JackFrost| What? No way. Tabs are way more efficient. You only need one character to indent.
+USER|But what if you need to change the indentation level? With spaces, you just change the number. With tabs, you have to replace all the tabs with spaces.
+JackFrost|That's not true. Any decent text editor can convert tabs to spaces and vice versa.
+bastelfreak|Can we please talk about something more interesting?
+nicole|Yeah, this is a never-ending discussion and y'all know that.
+JackFrost|Okay, fine. Do you want to settle this with a game of rock paper scissors lizard spock, USER?
+USER|Best of three?
+JackFrost|Sure, let's do this.
+bastelfreak| I'll referee.
+nicole| This should be good.
+bastelfreak| Ready? Go!.
