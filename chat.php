@@ -31,26 +31,14 @@
 				} else {
 					echo "Error opening file.";
 				}
-
 				?>
 			</ul>
 		</div>
 		<div id="chat-input">
-			<input type="text" placeholder="Type your message here">
-			<button>Send</button>
+			<input type="text" placeholder="Type a message">
+			<button id="btn-send">Send</button>
 		</div>
 	</div>
-	<!-- <header>
-	  <h1>IRC Chat</h1>
-	</header>
-	<div id="chat-display"> -->
-	<!-- This is where incoming messages will be displayed -->
-	<!-- </div>
-	<div id="input-area">
-	  <input type="text" id="message" placeholder="Type a message..." />
-	  <button id="send-button">Send</button>
-	</div> -->
-
 </body>
 
 </html>

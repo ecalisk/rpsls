@@ -12,6 +12,7 @@
 
     <button id="login">Login</button>
     <script>
+      /* func: Pass on nickname and channel name as a query string */
       function logUserFunction() {
         const nickname = document.getElementById("nickname").value;
         const channel = document.getElementById("channel").value;
@@ -21,7 +22,7 @@
           "&channel=" +
           encodeURIComponent(channel);
       }
-
+      /* CLICK HANDLE LOGIN BUTTON */
       const btnLogin = document.querySelector("#login");
       btnLogin.addEventListener("click", logUserFunction);
     </script>

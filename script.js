@@ -18,11 +18,10 @@ function getComputerChoice() {
 
 /* func: Get player choice & correct its format */
 function getPlayerChoice() {
-  let playerChoice = prompt("What is your play?");
-
   // Manipulate to correct format: first letter capital only
-  playerChoice =
-    playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
+  let chatInput = chatInputElement.value;
+  let playerChoice =
+    chatInput.charAt(0).toUpperCase() + chatInput.slice(1).toLowerCase();
   return playerChoice;
 }
 
@@ -33,10 +32,10 @@ function evaluateWinner(computerChoice, playerChoice) {
     winningChoice,
     losingChoice,
     defeatAction,
-    didPlayerWin
+    winnerName
   ) => {
-    if (didPlayerWin == "tie") return `It's a ${didPlayerWin}!`;
-    return `You ${didPlayerWin}! ${winningChoice} ${defeatAction} ${losingChoice}!`;
+    if (winnerName == "tie") return `bastelfreak: It's a ${winnerName}!`;
+    return `bastelfreak: ${winnerName} won! ${winningChoice} ${defeatAction} ${losingChoice}!`;
   };
 
   /* GAME RULES */
@@ -46,59 +45,146 @@ function evaluateWinner(computerChoice, playerChoice) {
       return announceWinner(computerChoice, playerChoice, "beats", "tie");
     // Scissors cuts Paper
     case computerChoice == "Scissors" && playerChoice == "Paper":
-      return announceWinner(computerChoice, playerChoice, "cuts", "lost");
+      return announceWinner(computerChoice, playerChoice, "cuts", "JackFrost");
     case playerChoice == "Scissors" && computerChoice == "Paper":
-      return announceWinner(playerChoice, computerChoice, "cuts", "won");
+      return announceWinner(
+        playerChoice,
+        computerChoice,
+        "cuts",
+        `${nickname}`
+      );
     // Paper covers Rock
     case computerChoice == "Paper" && playerChoice == "Rock":
-      return announceWinner(computerChoice, playerChoice, "covers", "lost");
+      return announceWinner(
+        computerChoice,
+        playerChoice,
+        "covers",
+        "JackFrost"
+      );
     case playerChoice == "Paper" && computerChoice == "Rock":
-      return announceWinner(playerChoice, computerChoice, "covers", "won");
+      return announceWinner(
+        playerChoice,
+        computerChoice,
+        "covers",
+        `${nickname}`
+      );
     // Rock crushes Lizard
     case computerChoice == "Rock" && playerChoice == "Lizard":
-      return announceWinner(computerChoice, playerChoice, "crushes", "lost");
+      return announceWinner(
+        computerChoice,
+        playerChoice,
+        "crushes",
+        "JackFrost"
+      );
     case playerChoice == "Rock" && computerChoice == "Lizard":
-      return announceWinner(playerChoice, computerChoice, "crushes", "won");
+      return announceWinner(
+        playerChoice,
+        computerChoice,
+        "crushes",
+        `${nickname}`
+      );
     // Lizard poisons Spock
     case computerChoice == "Lizard" && playerChoice == "Spock":
-      return announceWinner(computerChoice, playerChoice, "poisons", "lost");
+      return announceWinner(
+        computerChoice,
+        playerChoice,
+        "poisons",
+        "JackFrost"
+      );
     case playerChoice == "Lizard" && computerChoice == "Spock":
-      return announceWinner(playerChoice, computerChoice, "poisons", "won");
+      return announceWinner(
+        playerChoice,
+        computerChoice,
+        "poisons",
+        `${nickname}`
+      );
     // Spock smashes Scissors
     case computerChoice == "Spock" && playerChoice == "Scissors":
-      return announceWinner(computerChoice, playerChoice, "smashes", "lost");
+      return announceWinner(
+        computerChoice,
+        playerChoice,
+        "smashes",
+        "JackFrost"
+      );
     case playerChoice == "Spock" && computerChoice == "Scissors":
-      return announceWinner(playerChoice, computerChoice, "smashes", "won");
+      return announceWinner(
+        playerChoice,
+        computerChoice,
+        "smashes",
+        `${nickname}`
+      );
     // Scissors decapitates Lizard
     case computerChoice == "Scissors" && playerChoice == "Lizard":
       return announceWinner(
         computerChoice,
         playerChoice,
         "decapitates",
-        "lost"
+        "JackFrost"
       );
     case playerChoice == "Scissors" && computerChoice == "Lizard":
-      return announceWinner(playerChoice, computerChoice, "decapitates", "won");
+      return announceWinner(
+        playerChoice,
+        computerChoice,
+        "decapitates",
+        `${nickname}`
+      );
     // Lizard eats Paper
     case computerChoice == "Lizard" && playerChoice == "Paper":
-      return announceWinner(computerChoice, playerChoice, "eats", "lost");
+      return announceWinner(computerChoice, playerChoice, "eats", "JackFrost");
     case playerChoice == "Lizard" && computerChoice == "Paper":
-      return announceWinner(playerChoice, computerChoice, "eats", "won");
+      return announceWinner(
+        playerChoice,
+        computerChoice,
+        "eats",
+        `${nickname}`
+      );
     // Paper disproves Spock
     case computerChoice == "Paper" && playerChoice == "Spock":
-      return announceWinner(computerChoice, playerChoice, "disproves", "lost");
+      return announceWinner(
+        computerChoice,
+        playerChoice,
+        "disproves",
+        "JackFrost"
+      );
     case playerChoice == "Paper" && computerChoice == "Spock":
-      return announceWinner(playerChoice, computerChoice, "disproves", "won");
+      return announceWinner(
+        playerChoice,
+        computerChoice,
+        "disproves",
+        `${nickname}`
+      );
     // Spock vaporizes Rock
     case computerChoice == "Spock" && playerChoice == "Rock":
-      return announceWinner(computerChoice, playerChoice, "vaporizes", "lost");
+      return announceWinner(
+        computerChoice,
+        playerChoice,
+        "vaporizes",
+        "JackFrost"
+      );
     case playerChoice == "Spock" && computerChoice == "Rock":
-      return announceWinner(playerChoice, computerChoice, "vaporizes", "won");
+      return announceWinner(
+        playerChoice,
+        computerChoice,
+        "vaporizes",
+        `${nickname}`
+      );
     // (and as it always has) Rock crushes Scissors
     case computerChoice == "Rock" && playerChoice == "Scissors":
-      return announceWinner(computerChoice, playerChoice, "crushes", "lost");
+      return announceWinner(
+        computerChoice,
+        playerChoice,
+        "crushes",
+        "JackFrost"
+      );
     case playerChoice == "Rock" && computerChoice == "Scissors":
-      return announceWinner(playerChoice, computerChoice, "crushes", "won");
+      return announceWinner(
+        playerChoice,
+        computerChoice,
+        "crushes",
+        `${nickname}`
+      );
+    default:
+      return `bastelfreak: Your move is off ${nickname} !`;
   }
 }
 
@@ -118,4 +204,44 @@ for (let i = 0; i < listItems.length; i++) {
   }
 }
 
+function sendMessage() {
+  const userMessage = document.createElement("li");
+  userMessage.textContent = getPlayerChoice();
+
+  const opponentMessage = document.createElement("li");
+  opponentMessage.textContent = getComputerChoice();
+
+  const evaluation = evaluateWinner(
+    opponentMessage.textContent,
+    userMessage.textContent
+  );
+
+  userMessage.textContent = `${nickname}: ` + userMessage.textContent;
+  opponentMessage.textContent = "JackFrost: " + opponentMessage.textContent;
+  previousMessages.appendChild(opponentMessage);
+  previousMessages.appendChild(userMessage);
+  console.log(evaluation);
+
+  if (
+    evaluation != `bastelfreak: Your move is off ${nickname}!` &&
+    evaluation != `bastelfreak: It's a tie!`
+  ) {
+    validRoundCount++;
+  }
+
+  if (validRoundCount >= 3) {
+    btnSend.disabled = true;
+    console.log("bastelfreak: We have a winner!");
+  } else {
+    console.log("bastelfreak: Another round.. Ready go!");
+  }
+
+  chatInputElement.value = "";
+}
+
 /* MAIN GAME LOOP */
+const chatInputBox = document.querySelector("#chat-input");
+const chatInputElement = chatInputBox.querySelector("input");
+const btnSend = document.querySelector("#btn-send");
+btnSend.addEventListener("click", sendMessage);
+let validRoundCount = 0;
