@@ -219,6 +219,29 @@ for (let i = 0; i < listItems.length; i++) {
   if (listItem.textContent.includes("USER")) {
     listItem.textContent = listItem.textContent.replace(/USER/g, nickname);
   }
+  listItem.innerHTML = makeFirstWordGreen(listItem.textContent);
+}
+
+/* Update channel name */
+const chatHeader = document.querySelector("#chat-header");
+const h2 = chatHeader.querySelector("h2");
+h2.textContent = `IRC | #${channel}`;
+
+/* func: Scroll chat log to the bottom */
+const chatMessages = document.getElementById("chat-messages");
+function scrollToBottom() {
+  // alert("test!");
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+/* func: Wrap the first word of a string in span and give it class 'green' */
+function makeFirstWordGreen(str) {
+  const words = str.split(" ");
+  const firstWord = words[0];
+  const firstWordWithColor = '<span class="green">' + firstWord + "</span>";
+  words[0] = firstWordWithColor;
+  const newStr = words.join(" ");
+  return newStr;
 }
 
 /* MAIN */
@@ -235,15 +258,17 @@ function sendMessage() {
 
   // Append choices to previous messages
   userMessage.textContent = `${nickname}: ` + userMessage.textContent;
-  opponentMessage.textContent = "JackFrost: " + opponentMessage.textContent;
-  previousMessages.appendChild(opponentMessage);
+  userMessage.innerHTML = makeFirstWordGreen(userMessage.textContent);
   previousMessages.appendChild(userMessage);
+  opponentMessage.textContent = "JackFrost: " + opponentMessage.textContent;
+  opponentMessage.innerHTML = makeFirstWordGreen(opponentMessage.textContent);
+  previousMessages.appendChild(opponentMessage);
 
   // Create referee feedback
   const refereeEvaluation = document.createElement("li");
   previousMessages.appendChild(refereeEvaluation);
 
-  // If it's not a tie or off move -count the round
+  // If it's not a tie or invalid move; count the round
   if (
     evaluation != `bastelfreak: Your move is off ${nickname}!` &&
     evaluation != `bastelfreak: It's a tie!`
@@ -259,7 +284,11 @@ function sendMessage() {
   } else {
     refereeEvaluation.textContent = `${evaluation} Another round.. Ready go!`;
   }
+  refereeEvaluation.innerHTML = makeFirstWordGreen(
+    refereeEvaluation.textContent
+  );
 
   // Empty chat input box before next use
   chatInputElement.value = "";
+  scrollToBottom();
 }

@@ -5,12 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IRC Chat - Login</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <input type="text" id="nickname" placeholder="Nickname" />
-    <input type="text" id="channel" placeholder="Channel" />
+    <div id="largest-container">
+      <h2>IRC Chat Login</h2>
+      <div id="login-menu">
+        <div id="input-div">
+          <input type="text" id="nickname" placeholder="Nickname" />
+          <input type="text" id="channel" placeholder="Channel" />
+        </div>
+        <button id="login">Login</button>
+      </div>
+    </div>
 
-    <button id="login">Login</button>
     <script>
       /* func: Pass on nickname and channel name as a query string */
       function logUserFunction() {

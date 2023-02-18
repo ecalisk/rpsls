@@ -7,12 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Document</title>
 	<script src="./script.js" defer></script>
+	<link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 	<div id="chat-window">
 		<div id="chat-header">
-			<h2>Welcome to the Web IRC Clone Chat Box</h2>
+			<h2></h2>
 		</div>
 		<div id="chat-messages">
 			<ul id="previous-messages">
